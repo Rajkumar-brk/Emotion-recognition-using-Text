@@ -1,0 +1,200 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="project">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">
+  <meta name="author" content="vinayak sharma">
+
+  <title>{{title}}</title>
+
+
+  <!-- bootstrap file -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- bootstrap file-->
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <!-- main css -->
+  <link rel="stylesheet" type="text/css" href="{% static "index.css" %}" />
+
+
+  <!-- message here -->
+
+  {% if messages %}
+  {% for message in messages %}
+
+  <script>
+    alert("{{ message }}");
+  </script>
+
+  {% endfor %}
+  {% endif %}
+
+  <!--_______________________________________________-->
+
+
+
+</head>
+<style>
+    
+.body {
+  height: 100%;
+}
+.html {
+  height: 100%;
+}
+.bg {
+  /* The image used */
+  background-image: url({% static "user/css/images/bg2.jpg" %});
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+    
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+</style>
+<body class="bg" >
+
+
+  <header class="row">
+
+    <!-- navbar-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" class="styleheader" href="{% url "index" %}">Moving Rating</a>
+        </div>
+        <div class="collapse navbar-collapse" id="mainNavBar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url "index" %}">Home</a></li>
+
+            {% if user.is_authenticated %}
+            <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-out"></span> &nbsp; Logout</a></li>
+            {% else %}
+            <li><a href="{% url "register" %}"><span class="glyphicon glyphicon-user"></span> &nbsp; Sign up</a></li>
+            <li><a href="{% url "login" %}"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Log in</a></li>
+            {% endif %}
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <br/>
+  <br>
+  <br>
+  <div class="row">
+    {% block start %}
+    {% if user.is_authenticated %}
+     
+    <center><h2 style="color:#00FFFF;">welcome back {{user.username}}! </h2></center>
+      
+<div class="gallery">
+     {% csrf_token %}
+  <a target="_blank"  name="xmen"  href="xmen">
+    <img src={% static "user/css/images/movie1.jpg" %} width="600" height="400">
+  </a>
+  <div class="desc">Xmen       Review:{{cnt1}} rating {{pr1}}</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="spm2">
+    <img src={% static "user/css/images/movie2.jpg" %} alt="Forest" width="600" height="400">
+  </a>
+  <div class="desc">SpiderMan2 Review:{{cnt2}} rating {{pr2}}</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="spm3">
+    <img src={% static "user/css/images/movie3.jpg" %} alt="Northern Lights" width="600" height="400">
+  </a>
+  <div class="desc">SpiderMan3 Review:{{cnt3}} rating {{pr3}}</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="valkyrie">
+    <img src={% static "user/css/images/movie4.jpg" %} alt="Mountains" width="600" height="400">
+  </a>
+  <div class="desc">valkyrie   Review:{{cnt4}} rating {{pr4}}</div>
+</div>
+<div class="gallery">
+  <a target="_blank" href="gladiator">
+    <img src={% static "user/css/images/movie5.jpg" %} alt="Cinque Terre" width="600" height="400">
+  </a>
+    
+  <div class="desc">gladiator  Review:{{cnt5}} rating {{pr5}}</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="iceage">
+    <img src={% static "user/css/images/movie6.jpg" %} alt="Forest" width="600" height="400">
+  </a>
+  <div class="desc">iceage     Review:{{cnt6}} rating {{pr6}}</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="transformers">
+    <img src={% static "user/css/images/movie7.jpg" %} alt="Northern Lights" width="600" height="400">
+  </a>
+  <div class="desc">transformers Review:{{cnt7}} rating {{pr7}}</div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="magneto">
+    <img src={% static "user/css/images/movie8.jpg" %} alt="Mountains" width="600" height="400">
+  </a>
+  <div class="desc">magneto Review:{{cnt8}} rating {{pr8}}</div>
+</div>
+    {% else %}
+    <center><h1>Welcome to Movie Reviews </h1></center>
+       <center><h2>Login or Signup to continue</h2></center>
+    {% endif %}
+    {% endblock %}
+  </div>
+</body>
+
+</html>
